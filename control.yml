@@ -1,0 +1,6 @@
+---
+- hosts: control_machine
+  become: true
+  gather_facts: false
+  roles:
+    - control

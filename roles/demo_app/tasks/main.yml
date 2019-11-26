@@ -1,0 +1,25 @@
+---
+# tasks file for demo_app
+- name: install web components
+  apt:
+    pkg:
+    - python-pip
+    - python-virtualenv
+    - python-mysqldb
+    state: present
+  tags: packages
+
+- name: copy demo application
+  copy: src=demo/app/ dest=/var/www/demo/ mode=0755
+  notify: restart apache2
+
+- name: copy demo.wsgi
+  template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
+  notify: restart apache2
+
+- name: copy demo config file
+  copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0755
+  notify: restart apache2
+
+- name: setup python virtualenv
+  pip: requirements=/var/www/demo/requirements.txt virtualenv=/var/www/demo/.venv

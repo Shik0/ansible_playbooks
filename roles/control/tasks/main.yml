@@ -1,0 +1,9 @@
+---
+# tasks file for control
+- name: install tools
+  apt:
+    pkg:
+      - curl
+      - python-httplib2
+    state: present
+  tags: packages

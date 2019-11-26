@@ -1,0 +1,8 @@
+---
+- hosts: database
+  become: true   #use sudo command
+  roles:
+    - role: mysql 
+      db_user_name: "{{ db_user }}" #take variables from group_vars
+      db_user_pass: "{{ db_pass }}"
+      db_user_host: '%'

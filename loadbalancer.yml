@@ -1,0 +1,6 @@
+---
+- hosts: loadbalancer
+  become: true #use sudo command
+  gather_facts: false #skip gathering facts
+  roles:
+    - nginx

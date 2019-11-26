@@ -1,0 +1,9 @@
+---
+# tasks file for control
+- name: install tools
+  qapt:
+        pkg:
+          - curl
+          - python-httplib2
+        state: present
+        update_cache: yes
